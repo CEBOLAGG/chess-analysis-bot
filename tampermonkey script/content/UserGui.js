@@ -27,16 +27,15 @@ class UserGui {
 	#projectName = "UserGui";
 	window = undefined;
 	document = undefined;
-	iFrame = undefined;
-	settings = {
+	iFrame = undefined;	settings = {
 		"window" : {
 			"title" : "Smart Chess Bot",
 			"name" : "userscript-gui",
-			"external" : false,
-			"centered" : false,
+			"external" : true,
+			"centered" : true,
 			"size" : {
-				"width" : 300,
-				"height" : 500,
+				"width" : 500,
+				"height" : 600,
 				"dynamicSize" : true
 			}
 		},
@@ -597,20 +596,19 @@ class UserGui {
 					: this.settings.window.size.height
 			);
 
-			this.document = this.window.document;
-
-			this.#initializeTabs();
+			this.document = this.window.document;			this.#initializeTabs();
 
 			// Call user's function
 			if(typeof readyFunction == "function") {
 				readyFunction();
 			}
 
-			window.onbeforeunload = () => {
-				// Close the GUI if parent window closes
-				this.close();
-			}
-		} 
+			// Comentado para permitir que a GUI permaneça aberta independentemente do estado da página
+			// window.onbeforeunload = () => {
+			// 	// Close the GUI if parent window closes
+			// 	this.close();
+			// }
+		}
 		
 		else {
 			// Window was already opened, bring the window back to focus
